@@ -1,0 +1,770 @@
+================================================================================
+FILE: 01_master_data.csv
+================================================================================
+Rows: 63   Columns: 34
+
+COLUMN SUMMARY
+                                 dtype  nulls  null_%  unique
+MedicineID                      object      0     0.0      63
+InternalSKU                     object      0     0.0      63
+GTIN14                         float64      0     0.0       1
+GenericName                     object      0     0.0      63
+FictionalBrandName              object      0     0.0      63
+DiseaseCategory                 object      0     0.0       7
+ICD10Category                   object      0     0.0       7
+ATCCode                         object      0     0.0      63
+TherapeuticClass                object      0     0.0      49
+DosageForm                      object      0     0.0      13
+Strength                        object      0     0.0      30
+RouteOfAdministration           object      0     0.0       3
+PackSize                         int64      0     0.0      13
+BaseUnitOfMeasure               object      0     0.0       2
+PrescriptionClass               object      0     0.0       2
+ControlledMedicineFlag          object      0     0.0       2
+ColdChainFlag                   object      0     0.0       2
+StorageMinTempC                  int64      0     0.0       2
+StorageMaxTempC                  int64      0     0.0       2
+MaxHumidityPct                   int64      0     0.0       2
+ShelfLifeMonths                  int64      0     0.0       2
+MinimumRemainingShelfLifeDays    int64      0     0.0       2
+PrimarySupplierID               object      0     0.0      12
+PrimaryPlantID                  object      0     0.0       4
+ManufacturingLeadTimeDays        int64      0     0.0       4
+StandardBatchSizePacks           int64      0     0.0       7
+SafetyStockDays                  int64      0     0.0       5
+ReorderReviewCycleDays           int64      0     0.0       1
+UnitManufacturingCostUSD       float64      0     0.0      39
+WholesalePriceUSD              float64      0     0.0      41
+RecommendedRetailPriceUSD      float64      0     0.0      41
+ProductStatus                   object      0     0.0       1
+EffectiveFromDate               object      0     0.0       1
+SourceSystem                    object      0     0.0       1
+
+Fully duplicated rows: 0
+
+DATE RANGE [ShelfLifeMonths]: 1970-01-01 00:00:00.000000024  ->  1970-01-01 00:00:00.000000036   (unparseable values: 0)
+DATE RANGE [ManufacturingLeadTimeDays]: 1970-01-01 00:00:00.000000014  ->  1970-01-01 00:00:00.000000035   (unparseable values: 0)
+DATE RANGE [EffectiveFromDate]: 2023-01-01 00:00:00  ->  2023-01-01 00:00:00   (unparseable values: 0)
+
+VALUES [DiseaseCategory] (7 distinct):
+DiseaseCategory
+Diabetes Mellitus                            9
+Cardiovascular Disease                       9
+Respiratory Disease                          9
+Infectious Disease                           9
+Gastrointestinal Disease                     9
+Neurological and Mental Health Conditions    9
+Pain and Inflammatory Conditions             9
+
+VALUES [ICD10Category] (7 distinct):
+ICD10Category
+E11        9
+I10-I99    9
+J40-J47    9
+A00-B99    9
+K20-K93    9
+F00-G99    9
+M00-M99    9
+
+VALUES [DosageForm] (13 distinct):
+DosageForm
+Tablet                      35
+Capsule                      8
+Gastro-resistant tablet      5
+Dry-powder inhaler           3
+Solution for injection       2
+Metered-dose inhaler         2
+Gastro-resistant capsule     2
+Pre-filled pen               1
+Modified-release tablet      1
+Effervescent tablet          1
+Nebulizer solution           1
+Inhalation capsule           1
+Oral solution                1
+
+VALUES [RouteOfAdministration] (3 distinct):
+RouteOfAdministration
+Oral            53
+Inhalation       7
+Subcutaneous     3
+
+VALUES [PackSize] (13 distinct):
+PackSize
+30     17
+28     14
+20     11
+1       8
+5       3
+10      3
+21      1
+3       1
+14      1
+7       1
+35      1
+100     1
+60      1
+
+VALUES [BaseUnitOfMeasure] (2 distinct):
+BaseUnitOfMeasure
+pack      55
+device     8
+
+VALUES [PrescriptionClass] (2 distinct):
+PrescriptionClass
+Prescription    58
+OTC              5
+
+VALUES [ControlledMedicineFlag] (2 distinct):
+ControlledMedicineFlag
+N    61
+Y     2
+
+VALUES [ColdChainFlag] (2 distinct):
+ColdChainFlag
+N    60
+Y     3
+
+VALUES [StorageMinTempC] (2 distinct):
+StorageMinTempC
+15    60
+2      3
+
+VALUES [StorageMaxTempC] (2 distinct):
+StorageMaxTempC
+25    60
+8      3
+
+VALUES [MaxHumidityPct] (2 distinct):
+MaxHumidityPct
+65    60
+75     3
+
+VALUES [ShelfLifeMonths] (2 distinct):
+ShelfLifeMonths
+24    34
+36    29
+
+VALUES [MinimumRemainingShelfLifeDays] (2 distinct):
+MinimumRemainingShelfLifeDays
+270    60
+180     3
+
+VALUES [PrimarySupplierID] (12 distinct):
+PrimarySupplierID
+SUP001    6
+SUP002    6
+SUP003    6
+SUP004    5
+SUP005    5
+SUP006    5
+SUP007    5
+SUP008    5
+SUP009    5
+SUP010    5
+SUP011    5
+SUP012    5
+
+VALUES [PrimaryPlantID] (4 distinct):
+PrimaryPlantID
+PLT02    18
+PLT04    17
+PLT03    14
+PLT01    14
+
+VALUES [ManufacturingLeadTimeDays] (4 distinct):
+ManufacturingLeadTimeDays
+28    19
+21    15
+35    15
+14    14
+
+VALUES [StandardBatchSizePacks] (7 distinct):
+StandardBatchSizePacks
+15000    13
+10000    13
+20000    12
+25000    12
+30000    11
+7500      1
+5000      1
+
+VALUES [SafetyStockDays] (5 distinct):
+SafetyStockDays
+42    16
+35    15
+49    15
+28    14
+21     3
+
+NUMERIC STATS
+                               count          mean      std           min           25%           50%           75%           max
+GTIN14                          63.0  9.506000e+12     0.00  9.506000e+12  9.506000e+12  9.506000e+12  9.506000e+12  9.506000e+12
+PackSize                        63.0  2.246000e+01    15.45  1.000000e+00  1.200000e+01  2.800000e+01  3.000000e+01  1.000000e+02
+StorageMinTempC                 63.0  1.438000e+01     2.79  2.000000e+00  1.500000e+01  1.500000e+01  1.500000e+01  1.500000e+01
+StorageMaxTempC                 63.0  2.419000e+01     3.65  8.000000e+00  2.500000e+01  2.500000e+01  2.500000e+01  2.500000e+01
+MaxHumidityPct                  63.0  6.548000e+01     2.15  6.500000e+01  6.500000e+01  6.500000e+01  6.500000e+01  7.500000e+01
+ShelfLifeMonths                 63.0  2.952000e+01     6.03  2.400000e+01  2.400000e+01  2.400000e+01  3.600000e+01  3.600000e+01
+MinimumRemainingShelfLifeDays   63.0  2.657100e+02    19.32  1.800000e+02  2.700000e+02  2.700000e+02  2.700000e+02  2.700000e+02
+ManufacturingLeadTimeDays       63.0  2.489000e+01     7.62  1.400000e+01  2.100000e+01  2.800000e+01  2.800000e+01  3.500000e+01
+StandardBatchSizePacks          63.0  1.916667e+04  7364.36  5.000000e+03  1.500000e+04  2.000000e+04  2.500000e+04  3.000000e+04
+SafetyStockDays                 63.0  3.789000e+01     8.49  2.100000e+01  2.800000e+01  3.500000e+01  4.200000e+01  4.900000e+01
+ReorderReviewCycleDays          63.0  7.000000e+00     0.00  7.000000e+00  7.000000e+00  7.000000e+00  7.000000e+00  7.000000e+00
+UnitManufacturingCostUSD        63.0  2.980000e+00     6.09  3.500000e-01  8.200000e-01  1.100000e+00  2.200000e+00  4.400000e+01
+WholesalePriceUSD               63.0  8.770000e+00    12.94  1.800000e+00  3.550000e+00  4.600000e+00  7.500000e+00  9.200000e+01
+RecommendedRetailPriceUSD       63.0  1.157000e+01    17.08  2.380000e+00  4.690000e+00  6.070000e+00  9.900000e+00  1.214400e+02
+
+FIRST 5 ROWS
+  MedicineID  InternalSKU        GTIN14    GenericName FictionalBrandName    DiseaseCategory ICD10Category  ATCCode TherapeuticClass               DosageForm Strength RouteOfAdministration  PackSize BaseUnitOfMeasure PrescriptionClass ControlledMedicineFlag ColdChainFlag  StorageMinTempC  StorageMaxTempC  MaxHumidityPct  ShelfLifeMonths  MinimumRemainingShelfLifeDays PrimarySupplierID PrimaryPlantID  ManufacturingLeadTimeDays  StandardBatchSizePacks  SafetyStockDays  ReorderReviewCycleDays  UnitManufacturingCostUSD  WholesalePriceUSD  RecommendedRetailPriceUSD ProductStatus EffectiveFromDate        SourceSystem
+0     MED001  SKU-01-0001  9.506000e+12      Metformin     ClariMetform01  Diabetes Mellitus           E11  A10BA02        Biguanide                   Tablet   500 mg                  Oral        30              pack      Prescription                      N             N               15               25              65               24                            270            SUP001          PLT02                         21                   15000               35                       7                      0.55                2.2                       2.90        Active          01-01-23  ERP_PRODUCT_MASTER
+1     MED002  SKU-01-0002  9.506000e+12  Gliclazide MR     ClariGliclaz02  Diabetes Mellitus           E11  A10BB09     Sulfonylurea  Modified-release tablet    60 mg                  Oral        30              pack      Prescription                      N             N               15               25              65               24                            270            SUP002          PLT03                         28                   20000               42                       7                      1.20                4.8                       6.34        Active          01-01-23  ERP_PRODUCT_MASTER
+2     MED003  SKU-01-0003  9.506000e+12    Sitagliptin     ClariSitagli03  Diabetes Mellitus           E11  A10BH01  DPP-4 inhibitor                   Tablet   100 mg                  Oral        28              pack      Prescription                      N             N               15               25              65               24                            270            SUP003          PLT04                         35                   25000               49                       7                      4.80               14.5                      19.14        Active          01-01-23  ERP_PRODUCT_MASTER
+3     MED004  SKU-01-0004  9.506000e+12  Empagliflozin     ClariEmpagli04  Diabetes Mellitus           E11  A10BK03  SGLT2 inhibitor                   Tablet    10 mg                  Oral        30              pack      Prescription                      N             N               15               25              65               24                            270            SUP004          PLT01                         14                   30000               28                       7                      4.40               13.8                      18.22        Active          01-01-23  ERP_PRODUCT_MASTER
+4     MED005  SKU-01-0005  9.506000e+12  Dapagliflozin     ClariDapagli05  Diabetes Mellitus           E11  A10BK01  SGLT2 inhibitor                   Tablet    10 mg                  Oral        28              pack      Prescription                      N             N               15               25              65               24                            270            SUP005          PLT02                         21                   10000               35                       7                      4.20               13.2                      17.42        Active          01-01-23  ERP_PRODUCT_MASTER
+
+================================================================================
+FILE: 05_pharmacy_sales_data.csv
+================================================================================
+Rows: 500,000   Columns: 45
+
+COLUMN SUMMARY
+                            dtype   nulls  null_%  unique
+SalesTransactionID         object       0    0.00  500000
+SalesDate                  object       0    0.00    1067
+SalesTimestampUTC          object       0    0.00  452674
+SalesChannel               object       0    0.00       2
+PharmacyID                 object       0    0.00      60
+PharmacyGLN               float64       0    0.00       1
+PharmacyName               object       0    0.00      60
+PharmacyType               object       0    0.00       3
+HospitalID                 object  390808   78.16      12
+PharmacyCity               object       0    0.00      18
+PharmacyState              object       0    0.00      15
+CountryCode                object       0    0.00       1
+PharmacyOrderID            object       0    0.00    3774
+PharmacyDeliveryID         object       0    0.00    3774
+PharmacyDeliveryDate       object       0    0.00     888
+DeliveryQuantityPacks       int64       0    0.00    2072
+DeliveryOTIFFlag           object       0    0.00       2
+WarehouseLotID             object       0    0.00     956
+SourceWarehouseID          object       0    0.00       6
+ProductionBatchID          object       0    0.00     536
+MedicineID                 object       0    0.00      63
+GTIN14                    float64       0    0.00       1
+DiseaseCategory            object       0    0.00       7
+GenericName                object       0    0.00      63
+BatchExpiryDate            object       0    0.00     426
+DaysToExpiryAtSale          int64       0    0.00     709
+QuantitySoldPacks           int64       0    0.00       3
+UnitRetailPriceUSD        float64       0    0.00      41
+GrossSalesAmountUSD       float64       0    0.00     112
+DiscountAmountUSD         float64       0    0.00     211
+NetSalesAmountUSD         float64       0    0.00     414
+SalesTaxUSD               float64       0    0.00     232
+CostOfGoodsSoldUSD        float64       0    0.00     103
+GrossMarginUSD            float64       0    0.00     356
+PromotionCode              object  420276   84.06       4
+PrescriptionRequiredFlag   object       0    0.00       2
+PrescriptionID             object   37316    7.46  462684
+CustomerSegment            object       0    0.00       5
+PayerType                  object       0    0.00       4
+PaymentMethod              object       0    0.00       4
+EcommerceDeliveryStatus    object       0    0.00       3
+ReturnFlag                 object       0    0.00       2
+ReturnedQuantityPacks       int64       0    0.00       2
+SaleStatus                 object       0    0.00       2
+SourceSystem               object       0    0.00       2
+
+Fully duplicated rows: 0
+
+DATE RANGE [SalesDate]: 2023-01-02 00:00:00  ->  2025-12-31 00:00:00   (unparseable values: 0)
+DATE RANGE [SalesTimestampUTC]: 2023-01-30 23:29:47+00:00  ->  2025-12-31 23:44:11+00:00   (unparseable values: 0)
+DATE RANGE [PharmacyDeliveryDate]: 2023-01-02 00:00:00  ->  2025-12-31 00:00:00   (unparseable values: 0)
+DATE RANGE [BatchExpiryDate]: 2025-01-02 00:00:00  ->  2028-12-02 00:00:00   (unparseable values: 0)
+
+VALUES [SalesChannel] (2 distinct):
+SalesChannel
+Physical Pharmacy    414240
+Ecommerce             85760
+
+VALUES [PharmacyType] (3 distinct):
+PharmacyType
+Chain Pharmacy          222221
+Independent Pharmacy    168587
+Hospital Pharmacy       109192
+
+VALUES [HospitalID] (12 distinct):
+HospitalID
+NaN        390808
+HOSP004     13865
+HOSP012     11171
+HOSP005     10750
+HOSP010      9390
+HOSP011      9349
+HOSP006      9253
+HOSP008      8522
+HOSP007      8310
+HOSP001      8272
+HOSP009      7213
+HOSP002      6607
+HOSP003      6490
+
+VALUES [PharmacyCity] (18 distinct):
+PharmacyCity
+Boston          49870
+Hartford        44774
+Chicago         33547
+Las Vegas       31056
+San Diego       30958
+Los Angeles     30486
+Pittsburgh      28115
+New York        28073
+Detroit         26776
+Philadelphia    26491
+Houston         25773
+Denver          25048
+Columbus        24527
+Dallas          24033
+Atlanta         18733
+Charlotte       17569
+Nashville       17209
+Miami           16962
+
+VALUES [PharmacyState] (15 distinct):
+PharmacyState
+CA    61444
+PA    54606
+MA    49870
+TX    49806
+CT    44774
+IL    33547
+NV    31056
+NY    28073
+MI    26776
+CO    25048
+OH    24527
+GA    18733
+NC    17569
+TN    17209
+FL    16962
+
+VALUES [DeliveryOTIFFlag] (2 distinct):
+DeliveryOTIFFlag
+Y    457676
+N     42324
+
+VALUES [SourceWarehouseID] (6 distinct):
+SourceWarehouseID
+WH006    94644
+WH004    92500
+WH002    84850
+WH001    82679
+WH003    74854
+WH005    70473
+
+VALUES [DiseaseCategory] (7 distinct):
+DiseaseCategory
+Gastrointestinal Disease                     85189
+Infectious Disease                           75915
+Neurological and Mental Health Conditions    73826
+Respiratory Disease                          67797
+Cardiovascular Disease                       67403
+Pain and Inflammatory Conditions             65418
+Diabetes Mellitus                            64452
+
+VALUES [QuantitySoldPacks] (3 distinct):
+QuantitySoldPacks
+1    409722
+2     85782
+3      4496
+
+VALUES [PromotionCode] (4 distinct):
+PromotionCode
+NaN          420276
+SEASON5       20058
+ONLINE10      19964
+LOYALTY5      19959
+WELLNESS8     19743
+
+VALUES [PrescriptionRequiredFlag] (2 distinct):
+PrescriptionRequiredFlag
+Y    462684
+N     37316
+
+VALUES [CustomerSegment] (5 distinct):
+CustomerSegment
+General wellness       100542
+Pediatric household    100084
+Senior chronic care    100083
+Adult acute care        99748
+Adult chronic care      99543
+
+VALUES [PayerType] (4 distinct):
+PayerType
+Government program    166751
+Insurance             166434
+Cash                  130292
+Hospital formulary     36523
+
+VALUES [PaymentMethod] (4 distinct):
+PaymentMethod
+Card               181205
+Insurance claim    138105
+Cash               137818
+Digital wallet      42872
+
+VALUES [EcommerceDeliveryStatus] (3 distinct):
+EcommerceDeliveryStatus
+Not applicable        414240
+Delivered              64162
+Returned to sender     21598
+
+VALUES [ReturnFlag] (2 distinct):
+ReturnFlag
+N    494028
+Y      5972
+
+VALUES [ReturnedQuantityPacks] (2 distinct):
+ReturnedQuantityPacks
+0    494028
+1      5972
+
+VALUES [SaleStatus] (2 distinct):
+SaleStatus
+Completed             494028
+Partially returned      5972
+
+VALUES [SourceSystem] (2 distinct):
+SourceSystem
+PHARMACY_POS           414240
+ECOM_ORDER_PLATFORM     85760
+
+NUMERIC STATS
+                          count          mean     std           min           25%           50%           75%           max
+PharmacyGLN            500000.0  9.506000e+11    0.00  9.506000e+11  9.506000e+11  9.506000e+11  9.506000e+11  9.506000e+11
+DeliveryQuantityPacks  500000.0  1.977420e+03  913.27  3.960000e+02  1.364000e+03  1.740000e+03  2.302000e+03  6.817000e+03
+GTIN14                 500000.0  9.506000e+12    0.00  9.506000e+12  9.506000e+12  9.506000e+12  9.506000e+12  9.506000e+12
+DaysToExpiryAtSale     500000.0  6.839300e+02  242.56  9.000000e+00  5.290000e+02  6.720000e+02  8.930000e+02  1.075000e+03
+QuantitySoldPacks      500000.0  1.190000e+00    0.41  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00  3.000000e+00
+UnitRetailPriceUSD     500000.0  1.015000e+01   12.53  2.380000e+00  4.750000e+00  6.070000e+00  9.500000e+00  1.214400e+02
+GrossSalesAmountUSD    500000.0  1.208000e+01   16.38  2.380000e+00  5.020000e+00  6.860000e+00  1.188000e+01  3.643200e+02
+DiscountAmountUSD      500000.0  1.300000e-01    0.57  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  3.643000e+01
+NetSalesAmountUSD      500000.0  1.194000e+01   16.22  2.140000e+00  5.020000e+00  6.860000e+00  1.188000e+01  3.643200e+02
+SalesTaxUSD            500000.0  7.200000e-01    0.97  1.300000e-01  3.000000e-01  4.100000e-01  7.100000e-01  2.186000e+01
+CostOfGoodsSoldUSD     500000.0  9.150000e+00   12.41  1.800000e+00  3.800000e+00  5.200000e+00  9.000000e+00  2.760000e+02
+GrossMarginUSD         500000.0  2.790000e+00    3.83  3.400000e-01  1.150000e+00  1.600000e+00  2.720000e+00  8.832000e+01
+ReturnedQuantityPacks  500000.0  1.000000e-02    0.11  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  1.000000e+00
+
+FIRST 5 ROWS
+  SalesTransactionID SalesDate     SalesTimestampUTC       SalesChannel PharmacyID   PharmacyGLN                        PharmacyName          PharmacyType HospitalID PharmacyCity PharmacyState CountryCode PharmacyOrderID PharmacyDeliveryID PharmacyDeliveryDate  DeliveryQuantityPacks DeliveryOTIFFlag WarehouseLotID SourceWarehouseID ProductionBatchID MedicineID        GTIN14           DiseaseCategory       GenericName BatchExpiryDate  DaysToExpiryAtSale  QuantitySoldPacks  UnitRetailPriceUSD  GrossSalesAmountUSD  DiscountAmountUSD  NetSalesAmountUSD  SalesTaxUSD  CostOfGoodsSoldUSD  GrossMarginUSD PromotionCode PrescriptionRequiredFlag PrescriptionID      CustomerSegment           PayerType    PaymentMethod EcommerceDeliveryStatus ReturnFlag  ReturnedQuantityPacks SaleStatus         SourceSystem
+0     SALE-000000001  12-11-23  2023-11-12T13:43:13Z  Physical Pharmacy     PHR014  9.506000e+11              WellSpring Pharmacy 14        Chain Pharmacy        NaN    Las Vegas            NV          US     PHO-0002583        PHD-0002583             07-09-23                   1246                Y  WHLOT-0000658             WH004  B23-PLT02-000362     MED041  9.506000e+12  Gastrointestinal Disease       Domperidone        31-07-25                 627                  2                3.96                 7.92                0.4               7.52         0.45                 6.0            1.52      LOYALTY5                        Y   RX-000000001   Adult chronic care  Government program             Cash          Not applicable          N                      0  Completed         PHARMACY_POS
+1     SALE-000000002  27-02-23  2023-02-27T11:38:43Z  Physical Pharmacy     PHR052  9.506000e+11          Community Care Pharmacy 52  Independent Pharmacy        NaN        Miami            FL          US     PHO-0000343        PHD-0000343             20-02-23                   1312                Y  WHLOT-0000087             WH005  B23-PLT02-000037     MED005  9.506000e+12         Diabetes Mellitus     Dapagliflozin        27-01-25                 700                  1               17.42                17.42                0.0              17.42         1.05                13.2            4.22           NaN                        Y   RX-000000002     General wellness                Cash             Cash          Not applicable          N                      0  Completed         PHARMACY_POS
+2     SALE-000000003  24-09-23  2023-09-24T17:55:25Z  Physical Pharmacy     PHR005  9.506000e+11  Clarity Medical Center Pharmacy 05     Hospital Pharmacy    HOSP005     Hartford            CT          US     PHO-0002597        PHD-0002597             15-09-23                   2403                Y  WHLOT-0000660             WH006  B23-PLT02-000363     MED041  9.506000e+12  Gastrointestinal Disease       Domperidone        24-08-25                 700                  1                3.96                 3.96                0.0               3.96         0.24                 3.0            0.96           NaN                        Y   RX-000000003     General wellness           Insurance  Insurance claim          Not applicable          N                      0  Completed         PHARMACY_POS
+3     SALE-000000004  26-10-23  2023-10-26T09:25:10Z  Physical Pharmacy     PHR041  9.506000e+11          Community Care Pharmacy 41  Independent Pharmacy        NaN     Hartford            CT          US     PHO-0000451        PHD-0000451             25-10-23                   3249                N  WHLOT-0000112             WH006  B23-PLT04-000056     MED007  9.506000e+12         Diabetes Mellitus  Insulin Glargine        02-10-25                 707                  1               50.16                50.16                0.0              50.16         3.01                38.0           12.16           NaN                        Y   RX-000000004   Adult chronic care  Government program  Insurance claim          Not applicable          N                      0  Completed         PHARMACY_POS
+4     SALE-000000005  15-11-23  2023-11-15T07:29:55Z          Ecommerce     PHR041  9.506000e+11          Community Care Pharmacy 41  Independent Pharmacy        NaN     Hartford            CT          US     PHO-0002765        PHD-0002765             07-08-23                   1346                Y  WHLOT-0000703             WH006  B23-PLT01-000387     MED044  9.506000e+12  Gastrointestinal Disease        Mesalazine        15-07-25                 608                  1               31.68                31.68                0.0              31.68         1.90                24.0            7.68           NaN                        Y   RX-000000005  Pediatric household           Insurance   Digital wallet               Delivered          N                      0  Completed  ECOM_ORDER_PLATFORM
+
+================================================================================
+FILE: 06_hospital_demand_data.csv
+================================================================================
+Rows: 27,216   Columns: 41
+
+COLUMN SUMMARY
+                                 dtype  nulls  null_%  unique
+HospitalDemandRecordID          object      0     0.0   27216
+DemandMonth                     object      0     0.0      36
+HospitalID                      object      0     0.0      12
+HospitalGLN                    float64      0     0.0       1
+HospitalName                    object      0     0.0      12
+HospitalType                    object      0     0.0       4
+HospitalPharmacyID              object      0     0.0      12
+City                            object      0     0.0      12
+State                           object      0     0.0      10
+CountryCode                     object      0     0.0       1
+LicensedBeds                     int64      0     0.0      12
+ICUBeds                          int64      0     0.0      12
+AverageOccupancyRatePct          int64      0     0.0      12
+TraumaLevel                     object  13608    50.0       2
+CatchmentPopulation              int64      0     0.0      12
+MED003                          object      0     0.0      63
+GTIN14                         float64      0     0.0       1
+GenericName                     object      0     0.0      63
+DiseaseCategory                 object      0     0.0       7
+ICD10Category                   object      0     0.0       7
+EstimatedDiseaseCases            int64      0     0.0    3699
+DiseaseRelatedAdmissions         int64      0     0.0    2549
+OutpatientEncounters             int64      0     0.0    6559
+ForecastDemandPacks              int64      0     0.0     624
+RequestedQuantityPacks           int64      0     0.0     714
+ApprovedQuantityPacks            int64      0     0.0     690
+ReceivedQuantityPacks            int64      0     0.0     675
+EmergencyRequestQuantityPacks    int64      0     0.0     135
+OpeningStockPacks                int64      0     0.0     823
+DispensedQuantityPacks           int64      0     0.0     658
+ConsumedQuantityPacks            int64      0     0.0     655
+WastageQuantityPacks             int64      0     0.0       9
+ClosingStockPacks                int64      0     0.0     825
+UnfulfilledDemandPacks           int64      0     0.0      49
+StockoutDays                     int64      0     0.0       9
+ServiceLevelPct                float64      0     0.0      78
+MedicationRequestStatus         object      0     0.0       2
+FormularyStatus                 object      0     0.0       3
+AverageLeadTimeDays              int64      0     0.0      14
+DemandTrendIndex               float64      0     0.0     402
+SourceSystem                    object      0     0.0       1
+
+Fully duplicated rows: 0
+
+DATE RANGE [DemandMonth]: 2023-01-01 00:00:00  ->  2025-01-12 00:00:00   (unparseable values: 0)
+DATE RANGE [AverageLeadTimeDays]: 1970-01-01 00:00:00.000000007  ->  1970-01-01 00:00:00.000000020   (unparseable values: 0)
+
+VALUES [HospitalID] (12 distinct):
+HospitalID
+HOSP001    2268
+HOSP002    2268
+HOSP003    2268
+HOSP004    2268
+HOSP005    2268
+HOSP006    2268
+HOSP007    2268
+HOSP008    2268
+HOSP009    2268
+HOSP010    2268
+HOSP011    2268
+HOSP012    2268
+
+VALUES [HospitalName] (12 distinct):
+HospitalName
+University Medical Center            2268
+Mercy Regional Hospital              2268
+Metro Specialty Institute            2268
+New England Teaching Hospital        2268
+Lakeside Community Hospital          2268
+Great Lakes Medical Center           2268
+Texas Central Hospital               2268
+Gulf Coast Medical Center            2268
+Pacific University Hospital          2268
+Desert Valley Hospital               2268
+Southeast Regional Medical Center    2268
+Coastal Care Hospital                2268
+
+VALUES [HospitalType] (4 distinct):
+HospitalType
+Academic Medical Center    9072
+General Hospital           9072
+Community Hospital         6804
+Specialty Hospital         2268
+
+VALUES [HospitalPharmacyID] (12 distinct):
+HospitalPharmacyID
+PHR001    2268
+PHR002    2268
+PHR003    2268
+PHR004    2268
+PHR005    2268
+PHR006    2268
+PHR007    2268
+PHR008    2268
+PHR009    2268
+PHR010    2268
+PHR011    2268
+PHR012    2268
+
+VALUES [City] (12 distinct):
+City
+Philadelphia    2268
+Pittsburgh      2268
+New York        2268
+Boston          2268
+Chicago         2268
+Detroit         2268
+Dallas          2268
+Houston         2268
+Los Angeles     2268
+Las Vegas       2268
+Atlanta         2268
+Miami           2268
+
+VALUES [State] (10 distinct):
+State
+PA    4536
+TX    4536
+NY    2268
+MA    2268
+IL    2268
+MI    2268
+CA    2268
+NV    2268
+GA    2268
+FL    2268
+
+VALUES [LicensedBeds] (12 distinct):
+LicensedBeds
+850    2268
+520    2268
+310    2268
+740    2268
+280    2268
+610    2268
+690    2268
+780    2268
+920    2268
+360    2268
+640    2268
+330    2268
+
+VALUES [ICUBeds] (12 distinct):
+ICUBeds
+96     2268
+54     2268
+38     2268
+82     2268
+24     2268
+68     2268
+74     2268
+90     2268
+110    2268
+34     2268
+70     2268
+30     2268
+
+VALUES [AverageOccupancyRatePct] (12 distinct):
+AverageOccupancyRatePct
+68    2268
+75    2268
+82    2268
+70    2268
+77    2268
+84    2268
+72    2268
+79    2268
+86    2268
+74    2268
+81    2268
+69    2268
+
+VALUES [TraumaLevel] (2 distinct):
+TraumaLevel
+NaN         13608
+Level I      6804
+Level II     6804
+
+VALUES [CatchmentPopulation] (12 distinct):
+CatchmentPopulation
+1800000    2268
+920000     2268
+1300000    2268
+1500000    2268
+610000     2268
+1040000    2268
+1450000    2268
+1700000    2268
+2100000    2268
+720000     2268
+1250000    2268
+830000     2268
+
+VALUES [DiseaseCategory] (7 distinct):
+DiseaseCategory
+Diabetes Mellitus                            3888
+Cardiovascular Disease                       3888
+Respiratory Disease                          3888
+Infectious Disease                           3888
+Gastrointestinal Disease                     3888
+Neurological and Mental Health Conditions    3888
+Pain and Inflammatory Conditions             3888
+
+VALUES [ICD10Category] (7 distinct):
+ICD10Category
+E11        3888
+I10-I99    3888
+J40-J47    3888
+A00-B99    3888
+K20-K93    3888
+F00-G99    3888
+M00-M99    3888
+
+VALUES [WastageQuantityPacks] (9 distinct):
+WastageQuantityPacks
+0    24977
+1      772
+2      717
+3      429
+4      228
+5       76
+6       12
+7        3
+8        2
+
+VALUES [StockoutDays] (9 distinct):
+StockoutDays
+0    27133
+1       48
+2       20
+5        4
+3        4
+4        3
+6        2
+7        1
+8        1
+
+VALUES [MedicationRequestStatus] (2 distinct):
+MedicationRequestStatus
+Completed              27133
+Partially fulfilled       83
+
+VALUES [FormularyStatus] (3 distinct):
+FormularyStatus
+Formulary                  23328
+Restricted                  2160
+Non-formulary exception     1728
+
+VALUES [AverageLeadTimeDays] (14 distinct):
+AverageLeadTimeDays
+14    3083
+15    3076
+13    2976
+12    2940
+16    2150
+17    2095
+18    2013
+9     1814
+10    1784
+11    1724
+20     942
+19     909
+7      866
+8      844
+
+NUMERIC STATS
+                                 count          mean        std           min           25%           50%           75%           max
+HospitalGLN                    27216.0  9.506000e+11       0.00  9.506000e+11  9.506000e+11  9.506000e+11  9.506000e+11  9.506000e+11
+LicensedBeds                   27216.0  5.858300e+02     213.64  2.800000e+02  3.525000e+02  6.250000e+02  7.500000e+02  9.200000e+02
+ICUBeds                        27216.0  6.417000e+01      26.96  2.400000e+01  3.700000e+01  6.900000e+01  8.400000e+01  1.100000e+02
+AverageOccupancyRatePct        27216.0  7.642000e+01       5.79  6.800000e+01  7.150000e+01  7.600000e+01  8.125000e+01  8.600000e+01
+CatchmentPopulation            27216.0  1.268333e+06  442384.91  6.100000e+05  8.975000e+05  1.275000e+06  1.550000e+06  2.100000e+06
+GTIN14                         27216.0  9.506000e+12       0.00  9.506000e+12  9.506000e+12  9.506000e+12  9.506000e+12  9.506000e+12
+EstimatedDiseaseCases          27216.0  2.409610e+03    1123.36  6.550000e+02  1.480000e+03  2.265000e+03  3.121000e+03  6.502000e+03
+DiseaseRelatedAdmissions       27216.0  1.131360e+03     544.54  2.550000e+02  6.910000e+02  1.048000e+03  1.478000e+03  3.635000e+03
+OutpatientEncounters           27216.0  3.496470e+03    1714.04  7.750000e+02  2.121000e+03  3.227000e+03  4.557000e+03  1.164700e+04
+ForecastDemandPacks            27216.0  2.054000e+02     107.44  3.800000e+01  1.220000e+02  1.850000e+02  2.670000e+02  8.090000e+02
+RequestedQuantityPacks         27216.0  2.286100e+02     122.10  4.000000e+01  1.350000e+02  2.050000e+02  2.970000e+02  1.144000e+03
+ApprovedQuantityPacks          27216.0  2.194900e+02     117.38  3.900000e+01  1.290000e+02  1.960000e+02  2.850000e+02  1.109000e+03
+ReceivedQuantityPacks          27216.0  2.118600e+02     114.10  2.900000e+01  1.240000e+02  1.890000e+02  2.750000e+02  1.068000e+03
+EmergencyRequestQuantityPacks  27216.0  4.330000e+00      14.68  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  1.950000e+02
+OpeningStockPacks              27216.0  3.548600e+02     158.43  0.000000e+00  2.280000e+02  3.550000e+02  4.780000e+02  9.370000e+02
+DispensedQuantityPacks         27216.0  2.122100e+02     113.54  3.900000e+01  1.250000e+02  1.900000e+02  2.750000e+02  1.020000e+03
+ConsumedQuantityPacks          27216.0  2.075800e+02     111.10  3.800000e+01  1.220000e+02  1.860000e+02  2.690000e+02  9.940000e+02
+WastageQuantityPacks           27216.0  1.800000e-01       0.69  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  8.000000e+00
+ClosingStockPacks              27216.0  3.543300e+02     159.41  0.000000e+00  2.270000e+02  3.540000e+02  4.770000e+02  9.370000e+02
+UnfulfilledDemandPacks         27216.0  9.000000e-02       2.57  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  1.530000e+02
+StockoutDays                   27216.0  1.000000e-02       0.14  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  8.000000e+00
+ServiceLevelPct                27216.0  9.998000e+01       0.64  7.023000e+01  1.000000e+02  1.000000e+02  1.000000e+02  1.000000e+02
+AverageLeadTimeDays            27216.0  1.365000e+01       3.28  7.000000e+00  1.100000e+01  1.400000e+01  1.600000e+01  2.000000e+01
+DemandTrendIndex               27216.0  1.070000e+00       0.14  8.600000e-01  9.500000e-01  1.010000e+00  1.200000e+00  1.320000e+00
+
+FIRST 5 ROWS
+  HospitalDemandRecordID DemandMonth HospitalID   HospitalGLN               HospitalName             HospitalType HospitalPharmacyID          City State CountryCode  LicensedBeds  ICUBeds  AverageOccupancyRatePct TraumaLevel  CatchmentPopulation  MED003        GTIN14 GenericName    DiseaseCategory ICD10Category  EstimatedDiseaseCases  DiseaseRelatedAdmissions  OutpatientEncounters  ForecastDemandPacks  RequestedQuantityPacks  ApprovedQuantityPacks  ReceivedQuantityPacks  EmergencyRequestQuantityPacks  OpeningStockPacks  DispensedQuantityPacks  ConsumedQuantityPacks  WastageQuantityPacks  ClosingStockPacks  UnfulfilledDemandPacks  StockoutDays  ServiceLevelPct MedicationRequestStatus FormularyStatus  AverageLeadTimeDays  DemandTrendIndex              SourceSystem
+0          HDEM-00000001    01-01-23    HOSP001  9.506000e+11  University Medical Center  Academic Medical Center             PHR001  Philadelphia    PA          US           850       96                       68     Level I              1800000  MED001  9.506000e+12   Metformin  Diabetes Mellitus           E11                   3329                      1769                  5111                  226                     307                    292                    282                             44                409                     298                    291                     0                393                       0             0            100.0               Completed       Formulary                   12             1.215  HOSPITAL_ERP_FHIR_EXPORT
+1          HDEM-00000002    01-02-23    HOSP001  9.506000e+11  University Medical Center  Academic Medical Center             PHR001  Philadelphia    PA          US           850       96                       68     Level I              1800000  MED001  9.506000e+12   Metformin  Diabetes Mellitus           E11                   2537                      1373                  3558                  191                     204                    204                    198                              0                393                     200                    196                     0                391                       0             0            100.0               Completed       Formulary                   11             0.865  HOSPITAL_ERP_FHIR_EXPORT
+2          HDEM-00000003    01-03-23    HOSP001  9.506000e+11  University Medical Center  Academic Medical Center             PHR001  Philadelphia    PA          US           850       96                       68     Level I              1800000  MED001  9.506000e+12   Metformin  Diabetes Mellitus           E11                   2817                      1300                  3825                  175                     192                    182                    181                              0                391                     167                    164                     0                405                       0             0            100.0               Completed       Formulary                   10             0.938  HOSPITAL_ERP_FHIR_EXPORT
+3          HDEM-00000004    01-04-23    HOSP001  9.506000e+11  University Medical Center  Academic Medical Center             PHR001  Philadelphia    PA          US           850       96                       68     Level I              1800000  MED001  9.506000e+12   Metformin  Diabetes Mellitus           E11                   2689                      1064                  3352                  141                     158                    149                    148                              0                405                     137                    133                     0                416                       0             0            100.0               Completed       Formulary                   14             0.904  HOSPITAL_ERP_FHIR_EXPORT
+4          HDEM-00000005    01-05-23    HOSP001  9.506000e+11  University Medical Center  Academic Medical Center             PHR001  Philadelphia    PA          US           850       96                       68     Level I              1800000  MED001  9.506000e+12   Metformin  Diabetes Mellitus           E11                   2832                      1528                  4829                  222                     249                    244                    235                              0                416                     206                    204                     0                445                       0             0            100.0               Completed       Formulary                    9             0.945  HOSPITAL_ERP_FHIR_EXPORT
