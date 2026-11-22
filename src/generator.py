@@ -44,6 +44,7 @@ def init_state(master, sales, hosp):
         "sales_serial": int(sales["SalesTransactionID"].str[5:].astype(int).max()),
         "hosp_serial": int(hosp["HospitalDemandRecordID"].str[5:].astype(int).max()),
         "lot_serial": int(sales["WarehouseLotID"].str[6:].astype(int).max()),
+        "delivery_serial": int(sales["PharmacyDeliveryID"].str[4:].astype(int).max()),        
         "batch_serial": batch_serial,
         "master": {r["MedicineID"]: r for r in master.to_dict("records")},
         "closing": {},
@@ -176,6 +177,20 @@ def gen_sales(pool, state, month_start, month_end, n, rng):
     out["ProductionBatchID"] = key.map(batch_map)
     out["BatchExpiryDate"] = expiry.dt.strftime(DATE_FMT)
     out["DaysToExpiryAtSale"] = (expiry - sale_dt).dt.days.astype(str)
+        # new delivery/order IDs (one per original delivery), delivered shortly before this month
+    orig_gap = (pd.to_datetime(s["SalesDate"], format=DATE_FMT)
+                - pd.to_datetime(s["PharmacyDeliveryDate"], format=DATE_FMT)).dt.days.clip(lower=1, upper=120)
+    dfirst = s.assign(_gap=orig_gap).drop_duplicates("PharmacyDeliveryID").set_index("PharmacyDeliveryID")["_gap"]
+    state.setdefault("delivery_serial", 0)
+    dnum, ddate = {}, {}
+    for did, gap in dfirst.items():
+        state["delivery_serial"] += 1
+        dnum[did] = state["delivery_serial"]
+        ddate[did] = month_start - pd.Timedelta(days=int(gap))
+    num = s["PharmacyDeliveryID"].map(dnum)
+    out["PharmacyDeliveryID"] = num.map(lambda x: f"PHD-{x:07d}")
+    out["PharmacyOrderID"] = num.map(lambda x: f"PHO-{x:07d}")
+    out["PharmacyDeliveryDate"] = s["PharmacyDeliveryID"].map(ddate).dt.strftime(DATE_FMT)
 
     # money: prices come from the current master (so revised prices flow into sales)
     master = state["master"]

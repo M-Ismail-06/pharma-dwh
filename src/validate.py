@@ -24,6 +24,9 @@ def dup(table, partition, idcol):
 # ------------------------- MASTER -------------------------
 T, ID = "stg_master_data", "medicineid"
 rule(T, ID, "M01_medicine_id_blank", "MedicineID is blank", "medicineid IS NULL OR trim(medicineid) = ''")
+rule(T, ID, "S15_delivery_date", "PharmacyDeliveryDate invalid or after the sales date",
+     "safe_date(pharmacydeliverydate) IS NULL OR (safe_date(salesdate) IS NOT NULL "
+     "AND safe_date(pharmacydeliverydate) > safe_date(salesdate))")
 rule(T, ID, "M02_duplicate_in_batch", "MedicineID appears more than once in the same batch",
      dup(T, "batch_id, medicineid", "medicineid"))
 for c in ["unitmanufacturingcostusd", "wholesalepriceusd", "recommendedretailpriceusd"]:
