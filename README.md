@@ -6,6 +6,12 @@ An automated data engineering pipeline for a pharmaceutical cold supply chain. A
 
 **Team:** Muhammad Ismail(30917), Aftab Ahmed(30526) 
 
+##Demo
+
+https://github.com/user-attachments/assets/e1322bf1-36d3-4cb8-8be2-09473847f8b0
+
+
+
 ## Milestone 1 status
 
 | Spec layer | Status | Where to look |
@@ -137,6 +143,9 @@ docs/                         data profile and Phase 1 data generation report
 deliverables/                 generated Phase 1 data files
 docker-compose.yml            Airflow, Postgres (airflow + staging) and Grafana
 ```
+
+
+
 
 ## Roadmap
 
