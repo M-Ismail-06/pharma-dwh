@@ -84,7 +84,7 @@ def move_file(path, dest_dir):
     shutil.move(str(path), str(dest))
 
 
-def ingest_file(path):
+def _ingest_file(path):
     path = Path(path)
     batch_id = uuid.uuid4().hex[:12]
     start = datetime.now()
@@ -150,3 +150,18 @@ def ingest_file(path):
             "status": status, "rows_loaded": rows,
             "duration_seconds": round((end - start).total_seconds(), 2),
             "error": error}
+
+def ingest_file(path):
+    """Serialise work per file name so the watcher/API and Airflow can never load a file twice."""
+    path = Path(path)
+    lock = get_conn()
+    lock.autocommit = True
+    try:
+        lock.cursor().execute("SELECT pg_advisory_lock(hashtext(%s))", (path.name,))
+        if not path.exists():
+            return {"batch_id": None, "file": path.name, "table": resolve_table(path.name),
+                    "status": "skipped", "rows_loaded": 0, "duration_seconds": 0,
+                    "error": "File already handled by another process"}
+        return _ingest_file(path)
+    finally:
+        lock.close()          # closing the connection releases the lock

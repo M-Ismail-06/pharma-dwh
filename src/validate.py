@@ -24,9 +24,7 @@ def dup(table, partition, idcol):
 # ------------------------- MASTER -------------------------
 T, ID = "stg_master_data", "medicineid"
 rule(T, ID, "M01_medicine_id_blank", "MedicineID is blank", "medicineid IS NULL OR trim(medicineid) = ''")
-rule(T, ID, "S15_delivery_date", "PharmacyDeliveryDate invalid or after the sales date",
-     "safe_date(pharmacydeliverydate) IS NULL OR (safe_date(salesdate) IS NOT NULL "
-     "AND safe_date(pharmacydeliverydate) > safe_date(salesdate))")
+
 rule(T, ID, "M02_duplicate_in_batch", "MedicineID appears more than once in the same batch",
      dup(T, "batch_id, medicineid", "medicineid"))
 for c in ["unitmanufacturingcostusd", "wholesalepriceusd", "recommendedretailpriceusd"]:
@@ -91,6 +89,9 @@ rule(T, ID, "S13_expiry_date", "BatchExpiryDate invalid or not after the sales d
 rule(T, ID, "S14_hospital_fk", "HospitalID not found in validated hospital data",
      "hospitalid IS NOT NULL AND NOT EXISTS (SELECT 1 FROM stg_hospital_demand h "
      "WHERE h.hospitalid = s.hospitalid AND h.validation_status = 'valid')")
+rule(T, ID, "S15_delivery_date", "PharmacyDeliveryDate invalid or after the sales date",
+     "safe_date(pharmacydeliverydate) IS NULL OR (safe_date(salesdate) IS NOT NULL "
+     "AND safe_date(pharmacydeliverydate) > safe_date(salesdate))")
 
 
 # ------------------------- setup + runner -------------------------
