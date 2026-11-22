@@ -1,0 +1,24 @@
+CREATE OR REPLACE FUNCTION safe_date(t text) RETURNS date AS $$
+DECLARE d date;
+BEGIN
+  IF t IS NULL OR t !~ '^[0-9]{2}-[0-9]{2}-[0-9]{2}$' THEN RETURN NULL; END IF;
+  d := to_date(t, 'DD-MM-YY');
+  IF to_char(d, 'DD-MM-YY') <> t THEN RETURN NULL; END IF;
+  RETURN d;
+EXCEPTION WHEN OTHERS THEN RETURN NULL;
+END $$ LANGUAGE plpgsql IMMUTABLE;
+
+CREATE OR REPLACE FUNCTION safe_iso_date(t text) RETURNS date AS $$
+BEGIN
+  IF t IS NULL OR t !~ '^[0-9]{4}-[0-9]{2}-[0-9]{2}' THEN RETURN NULL; END IF;
+  RETURN left(t, 10)::date;
+EXCEPTION WHEN OTHERS THEN RETURN NULL;
+END $$ LANGUAGE plpgsql IMMUTABLE;
+
+CREATE OR REPLACE FUNCTION safe_num(t text) RETURNS numeric AS $$
+  SELECT CASE WHEN t ~ '^-?[0-9]+([.][0-9]+)?$' THEN t::numeric END
+$$ LANGUAGE sql IMMUTABLE;
+
+CREATE OR REPLACE FUNCTION safe_int(t text) RETURNS bigint AS $$
+  SELECT CASE WHEN t ~ '^-?[0-9]+$' THEN t::bigint END
+$$ LANGUAGE sql IMMUTABLE;

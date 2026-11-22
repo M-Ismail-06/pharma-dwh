@@ -11,7 +11,7 @@ import psycopg2
 from config import (DB, FILE_MAP, COLUMN_RENAMES, CHUNK_ROWS,
                     PROCESSED, FAILED)
 
-AUDIT = {"batch_id", "source_file", "load_timestamp"}
+AUDIT = {"batch_id", "source_file", "load_timestamp", "row_id", "validation_status"}
 
 
 def get_conn():
@@ -68,6 +68,13 @@ def write_log(batch_id, path, table, file_hash, size_mb, start, end,
     finally:
         conn.close()
 
+def analyze_table(table):
+    conn = get_conn()
+    conn.autocommit = True
+    try:
+        conn.cursor().execute(f"ANALYZE {table}")
+    finally:
+        conn.close()
 
 def move_file(path, dest_dir):
     dest_dir.mkdir(parents=True, exist_ok=True)
@@ -124,6 +131,8 @@ def ingest_file(path):
                 raise
             finally:
                 conn.close()
+
+            analyze_table(table)
     except Exception as e:
         status, error, rows = "failed", str(e)[:1000], 0
 

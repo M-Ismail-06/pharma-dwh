@@ -6,6 +6,8 @@ RAW = ROOT / "data" / "raw"
 DROPZONE = ROOT / "data" / "dropzone"
 PROCESSED = ROOT / "data" / "processed"
 FAILED = ROOT / "data" / "failed"
+DUCKDB_PATH = ROOT / "data" / "warehouse" / "pharma_dwh.duckdb"
+SQL_DIR = ROOT / "sql"
 
 # Environment variables let Airflow (inside Docker) override these later.
 DB = dict(
@@ -17,6 +19,7 @@ DB = dict(
 )
 
 API_URL = os.getenv("INGEST_API_URL", "http://localhost:8000/ingest")
+
 
 # file-name prefix -> staging table
 FILE_MAP = {
