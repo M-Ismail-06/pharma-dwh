@@ -1,0 +1,249 @@
+{
+  "uid": "bi-movers",
+  "title": "BI-3 Fast vs slow moving medicines by therapeutic class",
+  "tags": [
+    "phase1",
+    "bi"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 0,
+  "refresh": "",
+  "time": {
+    "from": "2022-12-01T00:00:00.000Z",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "barchart",
+      "title": "Top 10 fast-moving medicines (packs sold)",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "staging-postgres"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 11
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "staging-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT generic_name, sum(qty_sold_packs) AS packs FROM bi_medicine_month GROUP BY 1 ORDER BY 2 DESC LIMIT 10"
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "barWidth": 0.8,
+        "groupWidth": 0.7,
+        "legend": {
+          "showLegend": false,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "generic_name"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 2,
+      "type": "barchart",
+      "title": "Top 10 slow-moving medicines (packs sold)",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "staging-postgres"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 11
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "staging-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT generic_name, sum(qty_sold_packs) AS packs FROM bi_medicine_month GROUP BY 1 ORDER BY 2 ASC LIMIT 10"
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "barWidth": 0.8,
+        "groupWidth": 0.7,
+        "legend": {
+          "showLegend": false,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "generic_name"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "type": "barchart",
+      "title": "Packs sold by therapeutic class",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "staging-postgres"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 11,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "staging-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT therapeutic_class, sum(qty_sold_packs) AS packs FROM bi_medicine_month GROUP BY 1 ORDER BY 2 DESC"
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "barWidth": 0.8,
+        "groupWidth": 0.7,
+        "legend": {
+          "showLegend": false,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "therapeutic_class"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "type": "table",
+      "title": "Fastest and slowest medicine in each therapeutic class",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "staging-postgres"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 11,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "staging-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "WITH t AS (SELECT therapeutic_class, generic_name, sum(qty_sold_packs) AS packs FROM bi_medicine_month GROUP BY 1, 2), r AS (SELECT *, row_number() OVER (PARTITION BY therapeutic_class ORDER BY packs DESC) AS hi, row_number() OVER (PARTITION BY therapeutic_class ORDER BY packs ASC) AS lo FROM t) SELECT therapeutic_class, max(CASE WHEN hi = 1 THEN generic_name END) AS fastest, max(CASE WHEN hi = 1 THEN packs END) AS fastest_packs, max(CASE WHEN lo = 1 THEN generic_name END) AS slowest, max(CASE WHEN lo = 1 THEN packs END) AS slowest_packs FROM r GROUP BY 1 ORDER BY 1"
+        }
+      ],
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Packs sold per month, top 5 medicines",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "staging-postgres"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 21,
+        "w": 24,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "staging-postgres"
+          },
+          "format": "time_series",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT to_timestamp(year_month || '-01', 'YYYY-MM-DD') AS time, generic_name AS metric, sum(qty_sold_packs) AS value FROM bi_medicine_month WHERE generic_name IN (SELECT generic_name FROM bi_medicine_month GROUP BY 1 ORDER BY sum(qty_sold_packs) DESC LIMIT 5) GROUP BY 1, 2 ORDER BY 1"
+        }
+      ],
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "showPoints": "always",
+            "lineWidth": 2
+          }
+        },
+        "overrides": []
+      }
+    }
+  ]
+}

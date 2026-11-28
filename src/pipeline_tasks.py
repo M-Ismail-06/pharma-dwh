@@ -68,6 +68,10 @@ def build_summaries():
     runpy.run_path(str(SRC / "build_summaries.py"), run_name="__main__")
 
 
+def publish_bi():
+    runpy.run_path(str(SRC / "publish_bi.py"), run_name="__main__")
+
+
 def log_metrics():
     runpy.run_path(str(SRC / "collect_storage_metrics.py"), run_name="__main__")
     import run_queries

@@ -1,4 +1,4 @@
-"""Phase 1 master pipeline: generate -> ingest -> validate -> dimensions -> facts -> summaries -> metrics.
+"""Phase 1 master pipeline: generate -> ingest -> validate -> dimensions -> facts -> summaries -> publish BI -> metrics.
 Trigger with config {"initial_load": true} to load the original CSVs instead of generating a new month."""
 import sys
 from datetime import datetime
@@ -30,7 +30,8 @@ with DAG(
     load_dimensions = PythonOperator(task_id="load_dimensions", python_callable=t.load_dimensions)
     load_facts = PythonOperator(task_id="load_facts", python_callable=t.load_facts)
     build_summaries = PythonOperator(task_id="build_summaries", python_callable=t.build_summaries)
+    publish_bi = PythonOperator(task_id="publish_bi", python_callable=t.publish_bi)
     log_metrics = PythonOperator(task_id="log_metrics", python_callable=t.log_metrics)
 
     (generate_data >> ingest_to_staging >> validate >> load_dimensions
-     >> load_facts >> build_summaries >> log_metrics)
+     >> load_facts >> build_summaries >> publish_bi >> log_metrics)
